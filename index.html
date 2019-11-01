@@ -1,0 +1,737 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="initial-scale=1.0, width=device-width">
+	<title>맛집 앱</title>
+
+	<style type="text/css">
+		<!--
+		a {text-decoration: none; color: blue;}
+		a:hover {text-decoration: none; color: red;}
+		td{font-size:10pt;}
+		body{background-color: fffff0}
+		-->
+	</style>
+
+	<script language="JavaScript">
+		<!--
+			function idcheck(y){
+
+				var alphaDigit = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOOPQRSTUVWXYZ1234567890"
+
+				var inputVal = $("#inputId").val();
+
+				for(i=0; i<y.id.value.length; i++){
+					if(alphaDigit.indexOf(y.id.value.substring(i,i+1)) == -1){
+						alert("ID는 영문과 숫자의 조합만 사용 할 수 있습니다.");
+						y.id.focus();
+						return;
+					}
+				}
+				if(y.id.value==""){
+					alert("ID를 입력해 주세요.");
+					y.id.focus();
+					return;
+				}
+				if(y.id.value.length < 4 || y.id.value.length > 15){
+					alert("ID는 4~15자 이내여야 합니다.");
+					y.id.focus();
+					return;
+				}
+				if(y.id.value.indexOf(" ") >= 0){
+					alert("ID에는 공백이 들어가면 안됩니다.");
+					y.id.focus();
+					return;
+				}
+				else{
+					alert(inputVal+ "는 사용가능한 ID입니다.");
+				}
+			}
+		</script>
+
+		<script language="JavaScript">
+			<!--
+				function hello(x){
+					var alphaDigit = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOOPQRSTUVWXYZ1234567890"
+
+					var idVal = $("#inputId").val();
+					var pwVal = $("#inputPw").val();
+
+					if(x.irum.value=""){
+						alret("이름을 입력해주세요");
+						x.irum.focus();
+						return;
+					}
+
+					for(i=0; i<x.irum.value.length; i++){
+						var CodeNum = x.irum.value.charCodeAt(i);
+						if(CodeNum < 128){
+							alert("한글로 입력해야 합니다.");
+							x.irum.value="";
+							x.irum.focus();
+							return;
+						}
+					}
+
+					if(x.id.value==""){
+						alert("ID를 입력해 주세요.");
+						x.id.focus();
+						return;
+					}
+					if(x.id.value.length < 4 || x.id.value.length > 15){
+						alert("ID는 4~15자 이내여야 합니다.");
+						x.id.focus();
+						return;
+					}
+					if(x.id.value.indexOf(" ") >= 0){
+						alert("ID에는 공백이 들어가면 안됩니다.");
+						x.id.focus();
+						return;
+					}
+
+					for(i=0; i<x.id.value.length; i++){
+						if(alphaDigit.indexOf(x.id.value.substring(i,i+1)) == -1){
+							alert("ID는 영문과 숫자의 조합만 사용 할 수 있습니다.");
+							x.id.focus();
+							return;
+						}
+					}
+
+					if(x.passwd.value == ""){
+						alret("비밀번호를 입력하셔야 합니다.");
+						x.passwd.focus();
+						return;
+					}
+
+					if(x.passwd.value.length < 4){
+						alert("비밀번호는 4자리 이상 입력하셔야 합니다.");
+						x.passwd.value ="";
+						x.passwd.focus();
+						return;
+					}
+					if (x.passwd.value==""){
+						alert("비밀번호를 확인 입력해 주셔야 합니다.")
+						x.passwd2.focus();
+						return;
+					}
+
+
+					if (x.passwd.value != x.passwd2.value) {
+						alert("비밀번호가 서로 일치하지 않습니다.");
+						x.passwd.value = x.passwd2.value="";
+						x.passwd.focus();
+						return;
+					} 
+
+					for (i=0; i<x.passwd.value.length; i++) {
+						if (alphaDigit.indexOf(x.passwd.value.substring(i, i+1)) < 0) {
+							alert("비밀번호는 영문과 숫자의 조합만 사용할 수 있습니다.");
+							x.passwd.value=x.passwd2.value="";
+							x.passwd.focus();
+							return;
+						}
+					}
+
+					if (x.passwd.value.indexOf(" ") >= 0) {
+						alert("비밀번호에는 공백이 들어가면 안됩니다.");
+						x.passwd.value = x.passwd2.value = "";
+						x.passwd.focus();
+						return;
+					}
+
+					else{
+						alert(idVal+"님 회원가입을 축하드립니다 \n패스워드는"+pwVal+"입니다.");
+						frm1.reset();
+					}
+				}
+			</script>
+
+
+			<!-- 제이쿼리모바일, 제이쿼리, 폰갭 라이브러리 파일(다운로드 방식)  -->  
+			<link rel="stylesheet" href="jquery.mobile/jquery.mobile-1.4.5.min.css"/>
+			<script src="jquery.mobile/jquery-1.11.1.min.js"></script>
+			<script src="jquery.mobile/jquery.mobile-1.4.5.min.js"></script>
+			<script src="cordova.js"></script>
+
+			<!-- 구글맵 API 라이브러리 파일(CDN 방식)  -->
+			<script src="http://maps.google.com/maps/api/js?sensor=true&language=ko"></script>  
+
+			<!-- jquery-ui-map 플러그인 라이브러리 파일(다운로드 방식)  -->
+			<script src="ui/min/jquery.ui.map.full.min.js"></script>  
+			<script src="ui/jquery.ui.map.extensions.js"></script>	 
+
+			<!-- 사용자 정의 자바스크립트 파일  -->
+			<script src="dbHandle.js"></script>	
+			<script src="photoHandle.js"></script>	
+			<script src="cafeDisplay.js"></script>
+			<script src="myLocation.js"></script>	
+			<script src="myAddress.js"></script>	
+			<script src="myRoute.js"></script>	
+
+			<script> 	
+	// 전역변수
+	var db = null;     		// DB 객체
+	var varCafeName;   		// 현재 맛집 이름
+	var recordSet = null; 	// 현재 레코드셋
+	var varPosition = null; // 현재 레코드		
+	var flag;  					// 입력/수정 페이지 식별
+	
+	$(document).ready(function() {
+	// 폰갭 API 초기화
+	initPhoneGap();
+
+ 	// DB, Table 열기			
+ 	openDB();  
+ 	createTable();  
+
+ 	// 이벤트 함수 정의	      		
+ 	$('#btnAdd').click(function() {
+ 		insertCafe(); 
+ 	});		
+ 	$('#btnAddCancel').click( function(){
+ 		$('#cafeType2').val('미정').attr('selected', 'selected'); 
+ 		$('#cafeType2').selectmenu('refresh'); 
+ 		$('#cafeRegion2').val('미정').attr('selected', 'selected'); 
+ 		$('#cafeRegion2').selectmenu('refresh');
+ 		$('#cafeScore2').val('0').slider('refresh'); 
+ 		form2.reset();     		
+ 	});	    
+ 	$('#btnModifySearch').click( function(){
+ 		var name = $('#sCafeName2').val();
+ 		selectCafeModify(name);
+ 	});
+ 	$('#btnUpdate').click( function(){  	
+ 		updateCafe();	
+ 	}); 
+ 	$('#btnDelete').click( function(){  	
+ 		deleteCafe();
+ 	}); 	    	      
+ 	$('#btnModifyCancel').click( function(){
+ 		$('#cafeType2').val('미정').attr('selected', 'selected'); 
+ 		$('#cafeType2').selectmenu('refresh'); 
+ 		$('#cafeRegion2').val('미정').attr('selected', 'selected'); 
+ 		$('#cafeRegion2').selectmenu('refresh');
+ 		$('#cafeScore2').val('0').slider('refresh'); 
+ 		form2.reset();     				
+ 	}); 	
+ 	$('#btnCafeListSearch').click( function(){
+ 		selectCafeList(); 
+ 	});
+ 	$('#btnTakePic1').click( function(){
+ 		if ($('#cafePic1').val() == ''){
+ 			navigator.notification.alert('사진 이름을 먼저 입력하세요', null, '입력오류');	   			
+ 		} else {	   			
+ 			flag='enrol';
+ 			capturePhoto();
+ 		} 
+ 	});
+ 	$('#btnTakePic2').click( function(){
+ 		if ($('#cafePic2').val() == ''){
+ 			navigator.notification.alert('사진 이름을 먼저 입력하세요', null, '입력오류');	   			
+ 		} else {	   			
+ 			flag='modify';
+ 			capturePhoto('change'); 
+ 		} 
+ 	});	    
+ 	$('#btnPicShow').click( function(){   
+ 		getCafePic(); 	    	   
+ 	});	
+ 	$('#btnMapShow').click( function(){   
+ 		getCafeAddressMap(); 	    	   
+ 	});
+ 	$('#btnRouteShow').click( function(){   
+ 		getCafeRouteMap(); 	    	   
+ 	});
+ });	
+	
+	function initPhoneGap() {
+		document.addEventListener('deviceready', onDeviceReady, true);
+	}   
+	function onDeviceReady() {
+		navigator.notification.alert('장치 준비됨', null, '폰갭 API');
+	} 
+
+	$(document).ready(function() {
+		initCordova();
+		
+		$('#btnLocationSearch').click(function() {
+			getMyLocation();
+		});
+		$('#btnAddressSearch').click(function() {
+			getMapAddress();
+		});			
+		$('#btnRouteSearch').click(function() {
+			getMyRoute();
+		});			
+	});	
+	
+	function initCordova() {
+		document.addEventListener('deviceready', onDeviceReady, true);
+	}   
+	function onDeviceReady() {
+		navigator.notification.alert('장치 준비됨', null, '코르도바 API');
+	}  
+
+</script>
+<style type="text/css">
+	#logo { display: block; margin: 10px auto;}
+	.my_listview_img { padding:10px; }
+	#btnGroup { margin: 5px 5px; }
+	#picArea { width:100%; height: width*3/4; }
+	#mapArea, #routeArea { width:100%; height: 330px; }
+	#mapArea1, #mapArea2, #mapArea3 { width:100%; height: 330px; }	
+</style>
+</head>
+<body>
+	<div data-role="page" id="mainPage">
+		<div data-role="panel" id="panel1" data-display="overlay" data-theme="b">
+			<form>
+				<h3>로그인</h3><br/>
+				<Table for="name"> 사용자명</Table>
+				<input name="name" id="name" type="text" value="" data-mini="true" data-clear-btn="true">
+				<Table for="password">비밀번호</Table>
+				<input name="password" id="password" type="password" value="" data-mini="true" data-clear-btn="true">
+				<div class="ui-grid-a">
+					<div class="ui-block-a"><a href="#" data-role="button" data-rel="close">취소</a></div>
+					<div class="ui-block-b"><a href="#" data-role="button" data-rel="close">저장</a></div>
+				</div>
+				<br/>
+				<center>
+					<a href="#page5" data-transition="pop"> 회원가입 </a>
+				</center>
+			</form>
+		</div>
+		<div data-role="header" data-position="fixed">
+			<h1>만수동의 밥상</h1>
+			<a href="#panel1" data-icon="user" class="ui-btn-right" data-inline="true">로그인</a>
+		</div>
+		<div data-role="content">
+			<img id="logo" src="mansumatzip.png" width="300px" height="350px">
+			<ul data-role="listview" data-inset="true" >
+				<li><a href="#intro">만수동 소개</a></li>
+				<li><a href="#myLocationSearchPage">맛집 지도</a></li>
+				<li><a href="#cafeEnrolPage">맛집 정보 등록</a></li>
+				<li><a href="#cafeModifyPage">맛집 정보 수정</a></li>
+				<li><a href="#cafeSearchPage">맛집 정보 조회</a></li>
+			</ul>
+		</div>
+		<div data-role="footer" data-position="fixed">
+			<h4> Michelin Guide In Mansu </h4>
+		</div>
+	</div>
+
+	<div data-role="page" id="intro" data-theme="b">
+		<div data-role="header" data-theme="b">
+			<a href="#" data-icon="back" data-rel="back" data-direction="reverse">Back</a>
+			<h1>만수동 소개</h1>
+			<a href="#mainPage" data-icon="home" data-iconpos="notext" >Home</a>
+		</div>
+		<div data-role="content">
+			<div  style="text-align:center">
+				<img src="mansuview.jpg" width="300px" height="300px">
+			</div>			
+			<div data-role="collapsible-set" data-theme="b" data-content-theme="e">
+				<div data-role="collapsible" data-collapsed="false">
+					<h3>만수동의 역사</h3>
+					<p>옛날 서울에서 수산포구로 이어지는 길목으로 중국의 무역선이 수산포구에 들어와 물건을 서울로 반입하는 길목이었던 주막거리인 김촌, 박촌, 하촌마을이 있었던 곳으로 만수동의 옛이름은 새말, 구룡골, 신밀말, 담뱅이말, 장승배기, 비릭개, 돌골, 쇠판 등이라고 하였으며 백세까지 장수하는 마을이라는 뜻에서 만수동이라 하였다.
+						<br/><br/>
+						1940년 부천군 남동면 만수리로 '만수'라는 이름이 처음 나타났으며, 1940년 4월 1일 인천부로 편입되어 만수정(町)이 되었다.
+					1945년 8월 15일 만수동으로 개칭하였다.</p>
+				</div>
+				<div data-role="collapsible">
+					<h3>만수동 지리</h3>
+					<p><img src="map.gif" width="300px" height="350px"></p>
+				</div>
+				<div data-role="collapsible" >	
+					<h3>만수동 전통시장</h3>
+					<p>만수시장, 모래내시장, 간석 시장, 장승백이 전통시장(구 창대시장) 등 많은 전통 시장이 있어 타 지역보다 대형마트 의존도가 떨어지는 지역이다.</p>
+				</div>
+			</div>
+		</div>
+		<div data-role="footer" data-position="fixed" data-theme="b">
+			<h1> Michelin Guide In Mansu </h1>
+		</div>		
+	</div>
+
+	<div data-role="page" id="myLocationSearchPage" data-position="fixed" >
+		<div data-role="header">
+			<h1>맛집 Map</h1>
+			<a href="#mainPage" data-icon="home" data-iconpos="notext" class="ui-btn-right">Home</a>
+		</div>	
+		<div data-role="content">
+			<div id="box1" class="ui-bar ui-bar-a">
+				위도 : <br/> 경도 :
+			</div>	
+			<input id="btnLocationSearch" type="button" value="현재 위치 맵 표시">
+			<div id="mapArea1"></div>		
+		</div>										
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#myLocationSearchPage">현위치검색</a></li>
+					<li><a href="#mapAddressSearchPage">지도검색</a></li>
+					<li><a href="#myRouteSearchPage">맛집경로검색</a></li>
+				</ul>
+			</div>
+		</div>		
+	</div>
+
+	<div data-role="page" id="mapAddressSearchPage" data-position="fixed" >
+		<div data-role="header">
+			<h1>맛집 Map</h1>
+			<a href="#mainPage" data-icon="home" data-iconpos="notext" class="ui-btn-right">Home</a>
+		</div>	
+		<div data-role="content">
+			<div id="box2" class="ui-bar ui-bar-a">
+				<label for="addrSearch">지역명 : </label>	
+				<input type="search" id="addrSearch" placeholder="예)인천시청">
+			</div>
+			<input id="btnAddressSearch" type="button" value="검색 위치 맵 표시">
+			<div id="mapArea2"></div>		
+		</div>										
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#myLocationSearchPage">현위치검색</a></li>
+					<li><a href="#mapAddressSearchPage">지도검색</a></li>
+					<li><a href="#myRouteSearchPage">맛집경로검색</a></li>
+				</ul>
+			</div>
+		</div>		
+	</div> 	
+
+	<div data-role="page" id="myRouteSearchPage" data-position="fixed">
+		<div data-role="header">
+			<h1>맛집 Map</h1>
+			<a href="#mainPage" data-icon="home" data-iconpos="notext" class="ui-btn-right">Home</a>
+		</div>	
+		<div data-role="content">
+			<div id="box3" class="ui-bar ui-bar-a">
+				<label for="strSearch">출발지 : </label>	
+				<input type="search" id="start" placeholder="예)인천시청">		
+				<label for="strSearch">도착지 : </label>	
+				<input type="search" id="end" placeholder="예)만수시장">										
+			</div>
+			<input id="btnRouteSearch" type="button" value="경로 맵 표시">
+			<div id="mapArea3"></div>		
+		</div>									
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#myLocationSearchPage">현위치검색</a></li>
+					<li><a href="#mapAddressSearchPage">지도검색</a></li>
+					<li><a href="#myRouteSearchPage">맛집경로검색</a></li>
+				</ul>
+			</div>
+		</div>		
+	</div> 	
+
+	<div data-role="page" id="cafeEnrolPage">
+		<div data-role="header" data-position="fixed">
+			<a href="#" data-icon="back" data-rel="back" data-direction="reverse">Back</a>
+			<h1>만수동의 밥상</h1>
+			<a href="#mainPage" data-icon="home" data-iconpos="notext">Home</a>
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#cafeEnrolPage">맛집  등록</a></li>
+					<li><a href="#cafeModifyPage">맛집  수정</a></li>
+					<li><a href="#cafeSearchPage">맛집  조회</a></li>
+				</ul>
+			</div>
+		</div>
+		<div data-role="content">
+			<form name="form1">  
+				<h3>맛집 정보 등록</h3>
+				<div class="ui-body ui-body-a gap">			
+					<label for="cafeName1">맛집명  : </label>
+					<input type="text" name="cafeName1" id="cafeName1" data-mini="true"/>
+					<label for="cafeType1" class="select">업종 : </label>
+					<select name="cafeType1" id="cafeType1" data-native-menu="false" data-mini="true" data-inline="true">
+						<option value="미정">미정</option>
+						<option value="한식">한식</option>
+						<option value="양식">양식</option>
+						<option value="중식">중식</option>
+						<option value="일식">일식</option>
+						<option value="주점">주점</option>
+						<option value="기타">기타</option>
+					</select>	 	
+					<label for="cafeRegion1" class="select">지역 : </label>
+					<select name="cafeRegion1" id="cafeRegion1" data-native-menu="false" data-mini="true" data-inline="true">
+						<option value="미정">미정</option>
+						<option value="만수동">만수동</option>
+						<option value="간석동">간석동</option>
+						<option value="구월동">구월동</option>
+						<option value="장수동">장수동</option>
+						<option value="서창동">서창동</option>
+						<option value="논현동">논현동</option>
+					</select>		
+					<label for="cafeScore1">점수 : </label>
+					<input type="range" name="cafeScore1" id="cafeScore1" min="0" max="10"/>
+					<label for="cafePhone1">전화 : </label>
+					<input type="tel" name="cafePhone1" id="cafePhone1" data-mini="true" placeholder="예) 032-123-4567"/>
+					<label for="cafeAddress1">주소 : </label>
+					<input type="text" name="cafeAddress1" id="cafeAddress1" data-mini="true"/>		
+					<label for="cafeMemo1">메모 : </label>	
+					<textarea cols="25" rows="5" name="cafeMemo1" id="cafeMemo1" data-mini="true"></textarea>	
+					<label for="cafePic1">사진 : </label>			
+					<input type="text" name="cafePic1" id="cafePic1" data-mini="true" placeholder="예) 길목 or Gilmok"/>	
+					<input type="button" name="takePic1" id="btnTakePic1" value="사진촬영" data-mini="true"/>					
+				</div>			
+				<div class="ui-body">
+					<fieldset class="ui-grid-a">
+						<div class="ui-block-a">
+							<a href="#mainPage" data-role="button" data-rel="close">취소</a>
+						</div>
+						<div class="ui-block-b">
+							<input type="button" id="btnAdd" value="추가"/>
+						</div>
+					</fieldset>
+				</div>				
+			</form> 
+		</div>
+		<div data-role="footer" data-position="fixed">
+			<h4> Michelin Guide In Mansu </h4>
+		</div>
+	</div>
+
+	<div data-role="page" id="cafeModifyPage">
+		<div data-role="header" data-position="fixed">
+			<a href="#" data-icon="back" data-rel="back" data-direction="reverse">Back</a>
+			<h1>만수동의 밥상</h1>
+			<a href="#mainPage" data-icon="home" data-iconpos="notext">Home</a>
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#cafeEnrolPage">맛집  등록</a></li>
+					<li><a href="#cafeModifyPage">맛집 수정</a></li>
+					<li><a href="#cafeSearchPage">맛집 조회</a></li>
+				</ul>
+			</div>
+		</div>
+		<div data-role="content">
+			<form name="form2">  
+				<h3>맛집정보 수정</h3>
+				<div class="ui-body ui-body-a gap">		
+					<label for="sCafeName2">맛집명  : </label>
+					<input type="search" name="sCafeName2" id="sCafeName2" value="" data-mini="true" />
+					<label for="cafeType2" class="select" >업종 :</label>
+					<select name="cafeType2" id="cafeType2" data-native-menu="false" data-mini="true" data-inline="true">
+						<option value="미정">미정</option>
+						<option value="한식">한식</option>
+						<option value="양식">양식</option>
+						<option value="중식">중식</option>
+						<option value="일식">일식</option>
+						<option value="주점">주점</option>
+						<option value="기타">기타</option>
+					</select>	 	
+					<label for="cafeRegion2" class="select">지역 :</label>
+					<select name="cafeRegion2" id="cafeRegion2" data-native-menu="false" data-mini="true" data-inline="true">
+						<option value="미정">미정</option>
+						<option value="만수동">만수동</option>
+						<option value="간석동">간석동</option>
+						<option value="구월동">구월동</option>
+						<option value="장수동">장수동</option>
+						<option value="서창동">서창동</option>
+						<option value="논현동">논현동</option>
+					</select>		
+					<label for="cafeScore2">평가 : </label>
+					<input type="range" name="cafeScore2" id="cafeScore2" min="0" max="10"/>
+					<label for="cafePhone2">전화 : </label>
+					<input type="tel" name="cafePhone2" id="cafePhone2" data-mini="true" placeholder="예) 031-123-4567"/>
+					<label for="cafeAddress2">주소 : </label>
+					<input type="text" name="cafeAddress2" id="cafeAddress2" data-mini="true"/>		
+					<label for="cafeMemo2">메모 : </label>	
+					<textarea cols="25" rows="5" name="cafeMemo2" id="cafeMemo2"  data-mini="true"></textarea>	
+					<label for="cafePic2">사진 : </label>			
+					<input type="text" name="cafePic2" id="cafePic2" data-mini="true" placeholder="예) 길목 or Gilmok"/>	
+					<input type="button" name="takePic2" id="btnTakePic2" value="사진재촬영" data-mini="true"/>				
+				</div><br/>	
+				<div data-role="controlgroup" data-type="horizontal" align="center">
+					<input type="reset" id="btnModifyCancel" value="취소"/>
+					<input type="button" id="btnUpdate" value="수정"/>		
+					<input type="button" id="btnDelete" value="삭제"/>	
+					<input type="button" id="btnModifySearch" value="검색"/>
+				</div>			
+			</form> 
+		</div>
+		<div data-role="footer" data-position="fixed">
+			<h4> Michelin Guide In Mansu </h4>
+		</div>
+	</div>
+
+	<div data-role="page" id="cafeSearchPage">
+		<div data-role="header" data-position="fixed">
+			<a href="#" data-icon="back" data-rel="back" data-direction="reverse">Back</a>
+			<h1>만수동의 밥상</h1>
+			<a href="#mainPage" data-icon="home" data-iconpos="notext">Home</a>
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#cafeEnrolPage">맛집  등록</a></li>
+					<li><a href="#cafeModifyPage">맛집 수정</a></li>
+					<li><a href="#cafeSearchPage">맛집 조회</a></li>
+				</ul>
+			</div>
+		</div>	
+		<div data-role="content">
+			<div class="ui-body">
+				<fieldset class="ui-grid-b">
+					<div class="ui-block-a">
+						<select name="cafeType3" id="cafeType3" data-native-menu="false" data-mini="true" data-inline="true">
+							<option>업종</option>
+							<option value="%">전체</option>					
+							<option value="한식">한식</option>
+							<option value="양식">양식</option>
+							<option value="중식">중식</option>
+							<option value="일식">일식</option>
+							<option value="주점">주점</option>
+							<option value="기타">기타</option>
+						</select>
+					</div>
+					<div class="ui-block-b">
+						<select name="cafeRegion3" id="cafeRegion3" data-native-menu="false" data-mini="true" data-inline="true">
+							<option>지역</option>
+							<option value="%">전국</option>
+							<option value="만수동">만수동</option>
+							<option value="간석동">간석동</option>
+							<option value="구월동">구월동</option>
+							<option value="장수동">장수동</option>
+							<option value="서창동">서창동</option>
+							<option value="논현동">논현동</option>
+						</select>
+					</div>								
+					<div class="ui-block-c" style="vertical-aligh:top">
+						<input type="button" id="btnCafeListSearch" value="목록검색" data-mini="true" data-inline="true"/> 
+					</div>
+				</fieldset>
+			</div>			  
+			<ul data-role="listview" id="cafeListArea" data-divider-theme="b" data-inset="true">
+				<!-- 카페 리스트 표시 영역 -->
+			</ul>       
+		</div>											
+		<div data-role="footer" data-position="fixed">
+			<h4> Michelin Guide In Mansu </h4>
+		</div>	
+	</div>	
+
+	<div data-role="page" id="cafeInfoShowPage">
+		<div data-role="header" data-position="fixed">
+			<a href="#" data-icon="back" data-rel="back" data-direction="reverse">Back</a>
+			<h1>만수동의 밥상</h1>
+			<a href="#mainPage" data-icon="home" data-iconpos="notext">Home</a>
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#cafeEnrolPage">맛집  등록</a></li>
+					<li><a href="#cafeModifyPage">맛집 수정</a></li>
+					<li><a href="#cafeSearchPage">맛집 조회</a></li>
+				</ul>
+			</div>
+		</div>	
+		<div data-role="content">	
+			<div id="btnGroup">
+				<span id="btnPicShow"><button data-role="none">사진보기</button></span>		
+				<span id="btnRouteShow"><button data-role="none">찾아가기</button></span>
+			</div>     
+			<div class="ui-body ui-body-a"><br/>	
+				<div id="cafeInfoArea">		
+					카페 정보 표시 영역
+				</div>				
+			</div>
+		</div>							
+		<div data-role="footer" data-position="fixed">
+			<h4> Michelin Guide In Mansu </h4>
+		</div>	
+	</div>	
+
+	<div data-role="dialog" id="picShowDialog" data-theme="b">
+		<div data-role="header"  data-theme="b">
+			<h1>맛집 사진</h1>
+		</div>
+		<div data-role="content"  data-theme="b">
+			<div id="picName" class="ui-bar ui-bar-a"></div><br/>   
+			<div><img id="picArea" src=""/></div>	
+		</div>
+	</div>
+
+	<div data-role="dialog" id="routeShowDialog" data-theme="b">
+		<div data-role="header"  data-theme="b">
+			<h1>맛집 경로</h1>
+		</div>
+		<div data-role="content"  data-theme="b">
+			<div id="routeName" class="ui-bar ui-bar-a"></div><br/>   
+			<div id="routeArea"></div>	
+		</div>
+	</div>
+
+	<div data-role="page" id="page5">
+		<div data-role="header" data-position="fixed">
+			<h1>만수동의 밥상</h1>
+			<a href="#mainPage" data-icon="back" data-iconpos="notext" class="ui-btn-left" data-inline="true"></a>
+		</div>
+
+		<div data-role="content">
+			<form name="frm1">
+				<table border=1 align="center" width="350" height="150">
+
+					<tr bgcolor = GRAY>
+						<th colspan="2">
+							<font size=4>회원 가입</font>
+						</th>
+					</tr>
+					<tr>
+						<th height="30">이름</th>
+						<td>
+							&nbsp<input type="text" size=12 name="irum" maxlength="5">
+						</td>
+						<tr>
+							<th height="30">아이디</th>
+							<td>
+								&nbsp<input type="text" size=12 name="id" maxlength="20" id="inputId">
+								&nbsp<input type="button" value="확인" id="btnId" onclick="idcheck(this.form)">
+							</td> 
+						</tr>
+						<tr>
+							<th height="30">패스워드</th>
+							<td>
+								패스워드
+								&nbsp<input type="password" size=12 id="inputPw" name="passwd" maxlength="30">
+								패스워드 확인
+								&nbsp<input type="password" size=12 name="passwd2" maxlength="30">
+							</td>
+						</tr>
+						<tr>
+							<th height="30">태어난 도시</th>
+							<td>
+								&nbsp<select name=city>
+									<option value="서울" selected> 서울 </option>
+									<option value="인천"> 인천 </option>
+									<option value="대구"> 대구 </option>
+									<option value="부산"> 부산 </option>
+									<option value="대전"> 대전 </option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<th>사진등록</th>
+							<td>
+								&nbsp<input type="file" size=40>
+							</td>
+						</tr>
+						<tr>
+							<th>자기소개</th>
+							<td>
+								<textarea rows="20" cols="50" placeholder="자기소개를 입력해보세요."></textarea>
+							</td>
+						</tr>
+						<tr bgcolor = GRAY>
+							<th colspan="2" height="30" >
+								<input type="button" value="가입하기" id="join" onclick="hello(this.form)">
+								<input type="reset" value="다시작성">
+							</th>
+						</tr>
+					</form>
+				</div>
+			</div>
+
+</body>
+</html>
+
